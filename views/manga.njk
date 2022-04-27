@@ -1,0 +1,14 @@
+{% extends layout %}
+{% block content %}
+  <main class="container">
+    <div>
+      {% for Manga in MangaList %}
+        <div class="MangaDiv">
+          <h3>{{Manga.Title}}</h3>
+          <p>Chapter: {{Manga.Chapter}} ||</p>
+          <p>Status: {{Manga.Status}}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}

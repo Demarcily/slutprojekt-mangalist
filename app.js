@@ -7,7 +7,7 @@ const nunjucks = require('nunjucks');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const mangaRouter = require('./routes/mangalist');
+const mangaRouter = require('./routes/MangaList');
 
 const app = express();
 
