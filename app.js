@@ -5,9 +5,11 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const nunjucks = require('nunjucks');
 
+require('dotenv').config();
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const mangaRouter = require('./routes/MangaList');
+const mangaRouter = require('./routes/mangalist');
 
 const app = express();
 

@@ -2,12 +2,88 @@
 {% block content %}
   <main class="container">
     <div>
-      {% for Manga in MangaList %}
-        <div class="MangaDiv">
-          <h3>{{Manga.Title}}</h3>
-          <p>Chapter: {{Manga.Chapter}} ||</p>
-          <p>Status: {{Manga.Status}}</p>
+      <form action="/mangalist" method="post" class="mt-3 mb-3">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Title</span>
+          <input class="form-control" 
+            type="text" 
+            name="Title" 
+            id="Title" 
+            value="{{ Title }}" 
+            required 
+            aria-label="Sizing example input" 
+            aria-describedby="inputGroup-sizing-sm">
+
+          <span class="input-group-text" id="inputGroup-sizing-sm">Chapter</span>
+          <input class="form-control" 
+            type="text" 
+            name="Chapter" 
+            id="Chapter" 
+            value="{{ Chapter }}" 
+            required 
+            aria-label="Sizing example input" 
+            aria-describedby="inputGroup-sizing-sm">
+
+          <span class="input-group-text" id="inputGroup-sizing-sm">Status</span>
+          <input class="form-control" 
+            type="text" 
+            name="Status" 
+            id="Status" 
+            value="{{ Status }}" 
+            required 
+            aria-label="Sizing example input" 
+            aria-describedby="inputGroup-sizing-sm">
+          <button class="btn btn-primary" type="submit">Add Manga</button>
         </div>
+      </form>
+    </div>
+
+    <div>
+      {% for manga in mangalist %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <div>
+            <h4 class="card-title">{{manga.Title}}</h4>
+            <p class="card-text">Chapter: {{manga.Chapter}}</p>
+            <p class="card-text">Status: {{manga.Status}}</p>
+          </div>
+          <div class="iblock">
+            <button class="collapsible">Edit</button>
+            <form action="/mangalist/{{manga.id}}/edit" method="post" class="mtop content">
+              <div class="input-group input-group-sm">
+                <input class="form-control" 
+                  type="text" 
+                  name="Title"
+                  id="Title"
+                  value="{{ manga.Title }}"
+                  required 
+                  aria-label="Sizing example input" 
+                  aria-describedby="inputGroup-sizing-sm">
+                <input class="form-control" 
+                  type="text" 
+                  name="Chapter"
+                  id="Chapter"
+                  value="{{ manga.Chapter }}"
+                  required 
+                  aria-label="Sizing example input" 
+                  aria-describedby="inputGroup-sizing-sm">
+                <input class="form-control" 
+                  type="text" 
+                  name="Status"
+                  id="Status"
+                  value="{{ manga.Status }}"
+                  required 
+                  aria-label="Sizing example input" 
+                  aria-describedby="inputGroup-sizing-sm">
+                <button class="btn btn-primary" type="submit">Save</button>
+              </div>
+            </form>
+          </div>
+          <div class="f-right">
+            <a href="/mangalist/{{manga.id}}/delete" class="btn btn-danger btn-sm">Remove</a>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
   </main>
