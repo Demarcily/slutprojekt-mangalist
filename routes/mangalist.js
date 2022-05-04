@@ -1,4 +1,5 @@
 const express = require('express');
+const { title } = require('nunjucks/src/filters');
 const router = express.Router();
 const pool = require('../database');
 
@@ -17,6 +18,29 @@ router.get('/', async (req, res, next) => {
     res.status(500).json({
       mangalist: {
         error: 'Error getting List'
+      }
+    })
+  });
+});
+
+router.get('/search', async (req, res, next) => {
+  const title = req.query.searchtitle;
+  const search = `%${title}%`
+  await pool.promise()
+  .query('SELECT * FROM MangaList WHERE Title LIKE ?', [search])
+  .then(([rows, fields]) => {
+  console.log(rows);
+    res.render('manga.njk', {
+      mangalist: rows,
+      title: 'Manga',
+      layout: 'layout.njk'
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      mangalist: {
+        error: 'Error getting results'
       }
     })
   });
