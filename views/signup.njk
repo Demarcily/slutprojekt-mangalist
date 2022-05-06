@@ -1,6 +1,29 @@
 {% extends layout %}
 {% block content %}
 <div class="position-absolute top-50 start-50 translate-middle bg-white border border-dark rounded row">
-Sign up
+  <form action="/users/signup" method="post" class="mt-3 mb-3">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+      <input class="form-control" 
+        type="text" 
+        name="name" 
+        id="name" 
+        value="{{ name }}" 
+        required
+        aria-label="Sizing example input" 
+        aria-describedby="inputGroup-sizing-sm">
+
+      <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+      <input class="form-control" 
+        type="text" 
+        name="password" 
+        id="password" 
+        value="{{ password }}" 
+        required 
+        aria-label="Sizing example input" 
+        aria-describedby="inputGroup-sizing-sm">
+      <button class="btn btn-primary" type="submit">Sign up</button>
+    </div>
+  </form>
 </div>
 {% endblock %}

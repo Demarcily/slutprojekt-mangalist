@@ -3,6 +3,10 @@ const router = express.Router();
 const pool = require('../database');
 
 router.get('/', async (req, res, next) => {
+  const name = req.session.username;
+  if (name == undefined) {
+    return res.redirect('/users');
+  }
   await pool.promise()
   .query('SELECT * FROM MangaList')
   .then(([rows, fields]) => {
