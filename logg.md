@@ -15,3 +15,8 @@ Idag så tänker jag fortsätta försöka ansluta min tabell "MangaList" med min
 Jag lyckaddes ansluta min tabell "MangaList" och fick även in alla CRUD funktioner som jag behöver.
 
 Idag tänker jag skapa en sök funktion. Har jag tid över så kan jag börja på login.
+
+### 2022-05-06
+Förra lektionen så skapade jag en sök funktion, men han inte med att skapa en login.
+
+Denna lektion tänker jag skapa en login

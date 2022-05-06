@@ -6,9 +6,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #3b3b3b; }
 
-a {
-  color: #00B7FF; }
-
 form {
   display: flex;
   flex-direction: column; }
@@ -18,6 +15,9 @@ form {
 
 .iblock {
   display: inline-block; }
+
+.hover:hover {
+  background-color: #979797; }
 
 .collapsible {
   font-size: 10px;

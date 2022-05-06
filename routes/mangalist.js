@@ -1,5 +1,4 @@
 const express = require('express');
-const { title } = require('nunjucks/src/filters');
 const router = express.Router();
 const pool = require('../database');
 

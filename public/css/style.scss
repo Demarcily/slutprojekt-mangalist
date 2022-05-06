@@ -8,14 +8,11 @@ body {
   background-color:#3b3b3b;
 }
 
-a {
-  color: #00B7FF;
-}
-
 form {
   display: flex;
   flex-direction: column;
 }
+
 
 // # CLASSES #
 
@@ -26,6 +23,12 @@ form {
 .iblock {
   display:inline-block
 }
+
+.hover:hover {
+  background-color: #979797;
+}
+
+
 
 // # Collapsible #
 .collapsible {
