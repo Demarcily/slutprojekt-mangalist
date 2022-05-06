@@ -10,6 +10,7 @@ router.get('/', async (req, res, next) => {
   await pool.promise()
   .query('SELECT * FROM MangaList')
   .then(([rows, fields]) => {
+    console.log(rows);
     res.render('manga.njk', {
       mangalist: rows,
       title: 'Manga',
@@ -32,7 +33,6 @@ router.get('/search', async (req, res, next) => {
   await pool.promise()
   .query('SELECT * FROM MangaList WHERE Title LIKE ?', [search])
   .then(([rows, fields]) => {
-  console.log(rows);
     res.render('manga.njk', {
       mangalist: rows,
       title: 'Manga',

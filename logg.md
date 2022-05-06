@@ -19,4 +19,4 @@ Idag tänker jag skapa en sök funktion. Har jag tid över så kan jag börja p�
 ### 2022-05-06
 Förra lektionen så skapade jag en sök funktion, men han inte med att skapa en login.
 
-Denna lektion tänker jag skapa en login
+Denna lektion tänker jag skapa en login.

@@ -10,27 +10,48 @@ router.get('/', async (req, res, next) => {
 
 // Signup
 router.get('/signup', async (req, res, next) => {
-  res.render('signup.njk', { layout: 'layout.njk', title: 'Signup' });
+  const flash = req.session.flash;
+  req.session.flash = null;
+
+  res.render('signup.njk', { 
+    layout: 'layout.njk', 
+    title: 'Signup', 
+    flash: flash });
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password; //Note: needs to check if another account with same username exists.
-  bcrypt.hash(password, 8, async function (err, hash) {
-    await pool.promise()
-      .query('INSERT INTO users (name, password) VALUES (?, ?)', [name, hash])
-      .then((response) => {
-        if (response[0].affectedRows === 1) {
-          res.redirect('/users/login');
-        } else {
-          res.status(400).redirect('/users/signup');
+  await pool.promise()
+    .query('SELECT name FROM users WHERE name = ? ', [name])
+    .then((response) => {
+      if (response == undefined) {
+        bcrypt.hash(password, 8, async function (err, hash) {
+          await pool.promise()
+            .query('INSERT INTO users (name, password) VALUES (?, ?)', [name, hash])
+            .then((response) => {
+              if (response[0].affectedRows === 1) {
+                res.redirect('/users/login');
+              } else {
+                res.status(400).redirect('/users/signup');
+              }
+            })
+            .catch(err => {
+              console.log(err);
+              res.redirect('/users');
+            });
+        });
+      }
+      else {
+        req.session.flash = {
+          head: 'Sign up',
+          msg: 'Username is already in use'
         }
-      })
-      .catch(err => {
-        console.log(err);
-        res.redirect('/users');
-      });
-  });
+        res.redirect('/users/signup')
+      }
+    })
+
+
 });
 
 
