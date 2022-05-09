@@ -10,11 +10,11 @@ router.get('/', async (req, res, next) => {
   await pool.promise()
   .query('SELECT * FROM MangaList')
   .then(([rows, fields]) => {
-    console.log(rows);
     res.render('manga.njk', {
       mangalist: rows,
-      title: 'Manga',
-      layout: 'layout.njk'
+      Htitle: 'Manga',
+      layout: 'layout.njk',
+      logout: 'Logout'
     });
   })
   .catch(err => {
@@ -31,12 +31,13 @@ router.get('/search', async (req, res, next) => {
   const title = req.query.searchtitle;
   const search = `%${title}%`
   await pool.promise()
-  .query('SELECT * FROM MangaList WHERE Title LIKE ?', [search])
+  .query('SELECT * FROM MangaList WHERE title LIKE ?', [search])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
       title: 'Manga',
-      layout: 'layout.njk'
+      layout: 'layout.njk',
+      logout: 'Logout'
     });
   })
   .catch(err => {
@@ -70,12 +71,22 @@ router.get('/:id/delete', async (req, res, next) => {
   });
 });
 
+router.get('/logout', async (req, res, next) => {
+  req.session.username = undefined;
+  req.session.flash = {
+    head: 'logout',
+    msg: 'Successfully logged out'
+  }
+  res.redirect('/');
+
+});
+
 router.post('/', async (req, res, next) => {
-  const title = req.body.Title;
-  const chapter = req.body.Chapter;
-  const status = req.body.Status;
+  const title = req.body.title;
+  const chapter = req.body.chapter;
+  const status = req.body.status;
   await pool.promise()
-  .query('INSERT INTO MangaList (Title, Chapter, Status) VALUES (?,?,?)', [title, chapter, status])
+  .query('INSERT INTO MangaList (title, chapter, status) VALUES (?,?,?)', [title, chapter, status])
   .then((response) => {
     if (response[0].affectedRows == 1) {
       res.redirect('/mangalist')
@@ -95,11 +106,11 @@ router.post('/', async (req, res, next) => {
 
 router.post('/:id/edit', async (req, res, next) => {
   const id = req.params.id;
-  const title = req.body.Title;
-  const chapter = req.body.Chapter;
-  const status = req.body.Status;
+  const title = req.body.title;
+  const chapter = req.body.chapter;
+  const status = req.body.status;
   await pool.promise()
-  .query('UPDATE MangaList SET Title = ?, Chapter = ?, Status = ? WHERE id = ?', [title, chapter, status, id])
+  .query('UPDATE MangaList SET title = ?, chapter = ?, status = ? WHERE id = ?', [title, chapter, status, id])
   .then((response) => {
     if (response[0].affectedRows == 1) {
       res.redirect('/mangalist')

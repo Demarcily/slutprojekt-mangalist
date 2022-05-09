@@ -20,3 +20,9 @@ Idag tänker jag skapa en sök funktion. Har jag tid över så kan jag börja p�
 Förra lektionen så skapade jag en sök funktion, men han inte med att skapa en login.
 
 Denna lektion tänker jag skapa en login.
+
+### 2022-05-09
+Förra lektionen så skapade jag en login. Gick bra.
+
+Idag så tänker jag lägga till ett sätt att logga ut.
+

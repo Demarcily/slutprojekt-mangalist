@@ -4,7 +4,7 @@ const pool = require('../database');
 const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res, next) => {
-  res.render('users.njk', { layout: 'layout.njk', title: 'Users' });
+  res.render('users.njk', { layout: 'layout.njk', Htitle: 'Users' });
 });
 
 
@@ -16,16 +16,17 @@ router.get('/signup', async (req, res, next) => {
   res.render('signup.njk', { 
     layout: 'layout.njk', 
     title: 'Signup', 
-    flash: flash });
+    flash: flash,
+  });
 });
 
 router.post('/signup', async (req, res, next) => {
   const name = req.body.name;
-  const password = req.body.password; //Note: needs to check if another account with same username exists.
+  const password = req.body.password;
   await pool.promise()
     .query('SELECT name FROM users WHERE name = ? ', [name])
     .then((response) => {
-      if (response == undefined) {
+      if (response[0][0] == undefined) {
         bcrypt.hash(password, 8, async function (err, hash) {
           await pool.promise()
             .query('INSERT INTO users (name, password) VALUES (?, ?)', [name, hash])
@@ -41,8 +42,7 @@ router.post('/signup', async (req, res, next) => {
               res.redirect('/users');
             });
         });
-      }
-      else {
+      } else {
         req.session.flash = {
           head: 'Sign up',
           msg: 'Username is already in use'
@@ -74,7 +74,6 @@ router.post('/login', async (req, res, next) => {
       console.log(result);
       if (result) {
         req.session.username = name;
-        req.session.user_id = rows[0].id;
         return res.redirect('/mangalist');
       } else {
         return res.send('Failed to login, wrong password');

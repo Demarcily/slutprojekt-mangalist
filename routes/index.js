@@ -4,7 +4,13 @@ const pool = require('../database');
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
-  res.render('index.njk', { layout: 'layout.njk', title: 'Start' });
+  const flash = req.session.flash;
+  req.session.flash = null;
+
+  res.render('index.njk', { 
+    layout: 'layout.njk', 
+    Htitle: 'Start',
+    flash: flash });
 });
 
 module.exports = router;

@@ -15,9 +15,9 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Title</span>
           <input class="form-control" 
             type="text" 
-            name="Title" 
-            id="Title" 
-            value="{{ Title }}" 
+            name="title" 
+            id="title" 
+            value="{{ title }}" 
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm">
@@ -25,9 +25,9 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Chapter</span>
           <input class="form-control" 
             type="text" 
-            name="Chapter" 
-            id="Chapter" 
-            value="{{ Chapter }}" 
+            name="chapter" 
+            id="chapter" 
+            value="{{ chapter }}" 
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm">
@@ -35,9 +35,9 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Status</span>
           <input class="form-control" 
             type="text" 
-            name="Status" 
-            id="Status" 
-            value="{{ Status }}" 
+            name="status" 
+            id="status" 
+            value="{{ status }}" 
             required 
             aria-label="Sizing example input" 
             aria-describedby="inputGroup-sizing-sm">
@@ -51,9 +51,9 @@
       <div class="card mb-3">
         <div class="card-body">
           <div>
-            <h5 class="card-title">{{manga.Title}}</h5>
-            <p class="card-text">Chapter: {{manga.Chapter}}</p>
-            <p class="card-text">Status: {{manga.Status}}</p>
+            <h5 class="card-title">{{manga.title}}</h5>
+            <p class="card-text">Chapter: {{manga.chapter}}</p>
+            <p class="card-text">Status: {{manga.status}}</p>
           </div>
           <div class="iblock">
             <button class="collapsible">Edit</button>
@@ -61,25 +61,25 @@
               <div class="input-group input-group-sm">
                 <input class="form-control" 
                   type="text" 
-                  name="Title"
-                  id="Title"
-                  value="{{ manga.Title }}"
+                  name="title"
+                  id="title"
+                  value="{{ manga.title }}"
                   required 
                   aria-label="Sizing example input" 
                   aria-describedby="inputGroup-sizing-sm">
                 <input class="form-control" 
                   type="text" 
-                  name="Chapter"
-                  id="Chapter"
-                  value="{{ manga.Chapter }}"
+                  name="chapter"
+                  id="chapter"
+                  value="{{ manga.chapter }}"
                   required 
                   aria-label="Sizing example input" 
                   aria-describedby="inputGroup-sizing-sm">
                 <input class="form-control" 
                   type="text" 
-                  name="Status"
-                  id="Status"
-                  value="{{ manga.Status }}"
+                  name="status"
+                  id="status"
+                  value="{{ manga.status }}"
                   required 
                   aria-label="Sizing example input" 
                   aria-describedby="inputGroup-sizing-sm">
