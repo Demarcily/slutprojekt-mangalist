@@ -20,7 +20,10 @@ router.get('/', async (req, res, next) => {
       layout: 'layout.njk', 
       Htitle: 'Start',
       flash: flash,
-      loggedin: 'Logout',
+      loggedin: {
+        logout: 'Logout',
+        username: name
+      }
     });
   }
 });

@@ -30,7 +30,7 @@
             {% endif %}
             {% if loggedin %}
             <li class="nav-item">
-              <a class="nav-link active" href="/mangalist/logout">{{ loggedin }}</a>
+              <a class="nav-link active" href="/mangalist/logout">{{ loggedin.logout }}</a>
             </li>
             {% endif %}
             <li class="nav-item">
@@ -38,6 +38,13 @@
             </li> 
           </ul>
         </div>
+        {% if loggedin %}
+        <ul class="navbar-nav mb-2 mb-lg-0 f-right">
+          <li class="nav-item f-right">
+            <a class="nav-link active" href="#">{{ loggedin.username }}</a>
+          </li> 
+        </ul>
+        {% endif %}
       </div>
     </nav>
     {% block content %}

@@ -19,7 +19,10 @@ router.get('/', async (req, res, next) => {
       mangalist: rows,
       Htitle: 'Manga',
       layout: 'layout.njk',
-      loggedin: 'Logout'
+      loggedin: {
+        logout: 'Logout',
+        username: name
+      }
     });
   })
   .catch(err => {
@@ -35,15 +38,18 @@ router.get('/', async (req, res, next) => {
 router.get('/search', async (req, res, next) => {
   const title = req.query.searchtitle;
   const search = `%${title}%`
-  const owner = req.session.username;
+  const name = req.session.username;
   await pool.promise()
-  .query('SELECT * FROM MangaList WHERE title LIKE ? AND owner = ?', [search, owner])
+  .query('SELECT * FROM MangaList WHERE title LIKE ? AND owner = ?', [search, name])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
       title: 'Manga',
       layout: 'layout.njk',
-      loggedin: 'Logout'
+      loggedin: {
+        logout: 'Logout',
+        username: name
+      }
     });
   })
   .catch(err => {
