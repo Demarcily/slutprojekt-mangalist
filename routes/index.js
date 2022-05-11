@@ -13,15 +13,14 @@ router.get('/', async (req, res, next) => {
     res.render('index.njk', { 
       layout: 'layout.njk', 
       Htitle: 'Start',
-      flash: flash,
-      notlogged: 'notlogged'
+      flash: flash
     });
   } else {
     res.render('index.njk', { 
       layout: 'layout.njk', 
       Htitle: 'Start',
       flash: flash,
-      logout: 'Logout'
+      loggedin: 'Logout',
     });
   }
 });

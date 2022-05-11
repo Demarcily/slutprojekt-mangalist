@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
       mangalist: rows,
       Htitle: 'Manga',
       layout: 'layout.njk',
-      logout: 'Logout'
+      loggedin: 'Logout'
     });
   })
   .catch(err => {
@@ -43,7 +43,7 @@ router.get('/search', async (req, res, next) => {
       mangalist: rows,
       title: 'Manga',
       layout: 'layout.njk',
-      logout: 'Logout'
+      loggedin: 'Logout'
     });
   })
   .catch(err => {

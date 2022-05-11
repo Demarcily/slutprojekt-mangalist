@@ -22,7 +22,7 @@ router.get('/signup', async (req, res, next) => {
   res.render('signup.njk', { 
     layout: 'layout.njk', 
     title: 'Signup', 
-    flash: flash,
+    flash: flash
   });
 });
 

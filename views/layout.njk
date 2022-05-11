@@ -20,7 +20,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0">
-            {% if notlogged %}
+            {% if not loggedin %}
             <li class="nav-item">
               <a class="nav-link active" href="/users/signup">Sign up</a>
             </li>
@@ -28,14 +28,14 @@
               <a class="nav-link active" href="/users/login">Log in</a>
             </li>
             {% endif %}
+            {% if loggedin %}
+            <li class="nav-item">
+              <a class="nav-link active" href="/mangalist/logout">{{ loggedin }}</a>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link active" href="/mangalist">MangaList</a>
             </li> 
-            {% if logout %}
-            <li class="nav-item">
-              <a class="nav-link active" href="/mangalist/logout">{{ logout }}</a>
-            </li>
-            {% endif %}
           </ul>
         </div>
       </div>
