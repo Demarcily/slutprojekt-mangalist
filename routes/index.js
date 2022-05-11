@@ -5,12 +5,25 @@ const pool = require('../database');
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   const flash = req.session.flash;
+  const name = req.session.username;
   req.session.flash = null;
 
-  res.render('index.njk', { 
-    layout: 'layout.njk', 
-    Htitle: 'Start',
-    flash: flash });
+
+  if (name == undefined) {
+    res.render('index.njk', { 
+      layout: 'layout.njk', 
+      Htitle: 'Start',
+      flash: flash,
+      notlogged: 'notlogged'
+    });
+  } else {
+    res.render('index.njk', { 
+      layout: 'layout.njk', 
+      Htitle: 'Start',
+      flash: flash,
+      logout: 'Logout'
+    });
+  }
 });
 
 module.exports = router;

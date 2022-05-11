@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
       head: 'Login',
       msg: `You're not logged in`
     }
-    return res.redirect('/users');
+    return res.redirect('/');
   }
 
   await pool.promise()
@@ -35,8 +35,9 @@ router.get('/', async (req, res, next) => {
 router.get('/search', async (req, res, next) => {
   const title = req.query.searchtitle;
   const search = `%${title}%`
+  const owner = req.session.username;
   await pool.promise()
-  .query('SELECT * FROM MangaList WHERE title LIKE ?', [search])
+  .query('SELECT * FROM MangaList WHERE title LIKE ? AND owner = ?', [search, owner])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
