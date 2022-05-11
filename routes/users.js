@@ -4,7 +4,13 @@ const pool = require('../database');
 const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res, next) => {
-  res.render('users.njk', { layout: 'layout.njk', Htitle: 'Users' });
+  const flash = req.session.flash;
+  req.session.flash = null;
+
+  res.render('users.njk', { 
+    layout: 'layout.njk', 
+    Htitle: 'Users', 
+    flash: flash });
 });
 
 

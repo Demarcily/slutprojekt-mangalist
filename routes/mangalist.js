@@ -5,10 +5,15 @@ const pool = require('../database');
 router.get('/', async (req, res, next) => {
   const name = req.session.username;
   if (name == undefined) {
+    req.session.flash = {
+      head: 'Login',
+      msg: `You're not logged in`
+    }
     return res.redirect('/users');
   }
+
   await pool.promise()
-  .query('SELECT * FROM MangaList')
+  .query('SELECT * FROM MangaList WHERE owner = ?', [name])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
@@ -78,15 +83,15 @@ router.get('/logout', async (req, res, next) => {
     msg: 'Successfully logged out'
   }
   res.redirect('/');
-
 });
 
 router.post('/', async (req, res, next) => {
   const title = req.body.title;
   const chapter = req.body.chapter;
   const status = req.body.status;
+  const owner = req.session.username;
   await pool.promise()
-  .query('INSERT INTO MangaList (title, chapter, status) VALUES (?,?,?)', [title, chapter, status])
+  .query('INSERT INTO MangaList (title, chapter, status, owner) VALUES (?,?,?,?)', [title, chapter, status, owner])
   .then((response) => {
     if (response[0].affectedRows == 1) {
       res.redirect('/mangalist')
