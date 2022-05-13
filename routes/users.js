@@ -63,7 +63,13 @@ router.post('/signup', async (req, res, next) => {
 
 // Login
 router.get('/login', async (req, res, next) => {
-  res.render('login.njk', { layout: 'layout.njk', title: 'Login' });
+  const flash = req.session.flash;
+  req.session.flash = null;
+
+  res.render('login.njk', { 
+    layout: 'layout.njk', 
+    title: 'Login',
+    flash: flash });
 });
 
 router.post('/login', async (req, res, next) => {
@@ -73,8 +79,13 @@ router.post('/login', async (req, res, next) => {
   .query('SELECT * FROM users WHERE name = ?', [name])
   .then(([rows, fields]) => {
     if (rows.length === 0) {
-      return res.send('Username does not exist');
+      req.session.flash = {
+        head: 'Username',
+        msg: 'Username does not exist'
+      }
+      res.redirect('/users/login');
     }
+
     console.log(rows[0]);
     bcrypt.compare(password, rows[0].password, function(err, result) {
       console.log(result);
@@ -82,7 +93,11 @@ router.post('/login', async (req, res, next) => {
         req.session.username = name;
         return res.redirect('/mangalist');
       } else {
-        return res.send('Failed to login, wrong password');
+        req.session.flash = {
+          head: 'Password',
+          msg: 'Failed to login, wrong password'
+        }
+        res.redirect('/users/login');
       }
     });    
   })

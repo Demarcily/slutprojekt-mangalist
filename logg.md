@@ -30,3 +30,9 @@ Idag så tänker jag lägga till ett sätt att logga ut.
 Förra lektionen så skapade jag ett sätt att logga ut.
 
 Idag så tänker jag försöka skapa en individuell MangaList för varje account.
+
+### 2022-05-13
+Varje account har nu ett eget manga lista. Det var enklare än jag trodde.
+
+Denna lektion tänker jag förbättra sign up och log in formulär så saker är mer tydligt.
+
