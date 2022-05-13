@@ -4,7 +4,7 @@ The plan is to make a site where you can create a user, log in, and create a man
 ## Routes
 :/
 
-:/account (Sign up and log in)
+:/account (Sign up and log in) (bytte till :/users istället)
 
 :/mangalist (Need a log in)
 

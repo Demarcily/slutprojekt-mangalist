@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 
   await pool.promise()
-  .query('SELECT * FROM MangaList WHERE owner = ?', [name])
+  .query('SELECT * FROM MangaList WHERE user_id = ?', [name])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
@@ -39,12 +39,20 @@ router.get('/search', async (req, res, next) => {
   const title = req.query.searchtitle;
   const search = `%${title}%`
   const name = req.session.username;
+  if (name == undefined) {
+    req.session.flash = {
+      head: 'Login',
+      msg: `You're not logged in`
+    }
+    return res.redirect('/');
+  }
+
   await pool.promise()
-  .query('SELECT * FROM MangaList WHERE title LIKE ? AND owner = ?', [search, name])
+  .query('SELECT * FROM MangaList WHERE title LIKE ? AND user_id = ?', [search, name])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
-      title: 'Manga',
+      Htitle: 'Manga',
       layout: 'layout.njk',
       loggedin: {
         logout: 'Logout',
@@ -96,9 +104,9 @@ router.post('/', async (req, res, next) => {
   const title = req.body.title;
   const chapter = req.body.chapter;
   const status = req.body.status;
-  const owner = req.session.username;
+  const user_id = req.session.username;
   await pool.promise()
-  .query('INSERT INTO MangaList (title, chapter, status, owner) VALUES (?,?,?,?)', [title, chapter, status, owner])
+  .query('INSERT INTO MangaList (title, chapter, status, user_id) VALUES (?,?,?,?)', [title, chapter, status, user_id])
   .then((response) => {
     if (response[0].affectedRows == 1) {
       res.redirect('/mangalist')

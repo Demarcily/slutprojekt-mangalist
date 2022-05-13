@@ -49,15 +49,16 @@
         </div>
       </form>
     </div>
-
     <div>
       {% for manga in mangalist %}
       <div class="card mb-3">
         <div class="card-body">
           <div>
             <h5 class="card-title">{{manga.title}}</h5>
-            <p class="card-text">Chapter: {{manga.chapter}}</p>
-            <p class="card-text">Status: {{manga.status}}</p>
+            <div class="d-flex">
+              <p class="card-text pe-2">Chapter: {{manga.chapter}}</p>
+              <p class="card-text">Status: {{manga.status}}</p>
+            </div>
           </div>
           <div class="iblock">
             <button class="collapsible">Edit</button>
