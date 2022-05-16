@@ -34,5 +34,15 @@ Idag så tänker jag försöka skapa en individuell MangaList för varje account
 ### 2022-05-13
 Varje account har nu ett eget manga lista. Det var enklare än jag trodde.
 
-Denna lektion tänker jag förbättra sign up och log in formulär så saker är mer tydligt.
+Denna lektion tänker jag förbättra sign up och login formulär så saker är mer tydligt.
+
+### 2022-05-16
+sign up och login ser bättre ut.
+
+Idag så tänker jag kolla hur "JOIN" fungerar och kanske använda det för mitt projekt.
+
+
+
+
+NOTE IDEA: Home page can have a list of manga of which the users can add to their mangalist
 

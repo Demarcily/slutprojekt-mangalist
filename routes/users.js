@@ -85,12 +85,12 @@ router.post('/login', async (req, res, next) => {
       }
       res.redirect('/users/login');
     }
-
-    console.log(rows[0]);
+    const user_id = rows[0].id;
     bcrypt.compare(password, rows[0].password, function(err, result) {
       console.log(result);
       if (result) {
         req.session.username = name;
+        req.session.user_id = user_id;
         return res.redirect('/mangalist');
       } else {
         req.session.flash = {
