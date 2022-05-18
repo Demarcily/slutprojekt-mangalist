@@ -41,8 +41,7 @@ sign up och login ser bättre ut.
 
 Idag så tänker jag kolla hur "JOIN" fungerar och kanske använda det för mitt projekt.
 
+### 2022-05-18
+Jag har en bättre förståelse för hur JOIN fungerar nu och vet hur jag kan använda det.
 
-
-
-NOTE IDEA: Home page can have a list of manga of which the users can add to their mangalist
-
+Idag så tänker jag skapa en lista av manga på huvud sidan som man sedan kan lägga till på sin mangalist/reading list.
