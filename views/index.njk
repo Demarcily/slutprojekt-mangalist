@@ -1,6 +1,23 @@
 {% extends layout %}
 {% block content %}
-<div class="position-absolute top-50 start-50 translate-middle bg-white border border-dark rounded">
-  <h4 class="p-3 mb-0">This is a nice home page</h4>
-</div>
+<main class="container">
+  <div class="row row-cols-1 row-cols-md-4 g-2">
+  {% for manga in mangalist%}
+  <div class="col" style="height: 20rem;">
+    <div class="card h-100">
+      <img src="" alt="" class="card-img-top">
+      <div class="card-body">
+        <div class="mb-5">
+          <h5 class="card-title">{{manga.title}}</h5>
+          <p class="card-text">*Insert Description*</p>
+        </div>
+        <div class="position-absolute end-0 bottom-0">
+          <a href="" class="btn btn-primary btn-sm">Add to Reading List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+</main>
 {% endblock %}

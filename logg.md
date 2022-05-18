@@ -45,3 +45,8 @@ Idag så tänker jag kolla hur "JOIN" fungerar och kanske använda det för mitt
 Jag har en bättre förståelse för hur JOIN fungerar nu och vet hur jag kan använda det.
 
 Idag så tänker jag skapa en lista av manga på huvud sidan som man sedan kan lägga till på sin mangalist/reading list.
+
+
+
+
+Note: split up manga by genre
