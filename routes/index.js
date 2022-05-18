@@ -31,9 +31,28 @@ router.get('/', async (req, res, next) => {
       });
     }
   })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      manga: {
+        error: 'Error getting manga from database'
+      }
+    })
+  });
+});
 
+router.get('/:id/add', async (req, res, next) => {
+  const id = req.params.id;
+  if (req.session.username == undefined) {
+    req.session.flash = {
+      head: 'Login',
+      msg: `You're not logged in`
+    }
+    return res.redirect('/');
+  }
 
-  
+  console.log('Works');
+
 });
 
 module.exports = router;
