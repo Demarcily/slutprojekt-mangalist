@@ -94,7 +94,7 @@ router.get('/:id/delete', async (req, res, next) => {
 router.get('/logout', async (req, res, next) => {
   req.session.username = undefined;
   req.session.flash = {
-    head: 'logout',
+    head: 'Logout',
     msg: 'Successfully logged out'
   }
   res.redirect('/');

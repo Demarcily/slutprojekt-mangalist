@@ -60,7 +60,7 @@ router.get('/:id/add', async (req, res, next) => {
       .query('INSERT INTO Connection (user_id, manga_id) VALUES (?,?)', [user_id, manga_id])
       .then((response) => {
         if (response[0].affectedRows == 1) {
-          res.redirect('/')
+          return;
         } else {
           res.status(400).redirect('/');
         }

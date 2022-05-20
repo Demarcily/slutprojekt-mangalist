@@ -89,7 +89,7 @@ router.post('/login', async (req, res, next) => {
       if (result) {
         req.session.username = name;
         req.session.user_id = user_id;
-        return res.redirect('/mangalist');
+        return res.redirect('/');
       } else {
         req.session.flash = {
           head: 'Password',
