@@ -46,7 +46,7 @@ Jag har en bättre förståelse för hur JOIN fungerar nu och vet hur jag kan an
 
 Idag så tänker jag skapa en lista av manga på huvud sidan som man sedan kan lägga till på sin mangalist/reading list.
 
+### 2022-05-20
+Lyckades skapa en lista av manga på hemsidan men han inte mer.
 
-
-
-Note: split up manga by genre
+Ska fortsätta och byta ut sql statements som jag använder och ändra hur mangalist tabellen ser ut.

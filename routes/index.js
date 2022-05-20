@@ -42,17 +42,53 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id/add', async (req, res, next) => {
-  const id = req.params.id;
-  if (req.session.username == undefined) {
+  const manga_id = req.params.id;
+  const name = req.session.username;
+  const user_id = req.session.user_id;
+  if (name == undefined) {
     req.session.flash = {
       head: 'Login',
-      msg: `You're not logged in`
+      msg: `You need to login first`
     }
     return res.redirect('/');
   }
-
-  console.log('Works');
-
+  await pool.promise()
+  .query('SELECT * FROM Connection WHERE user_id = ? AND manga_id = ?', [user_id, manga_id])
+  .then(async (response) => {
+    if (response[0][0] == undefined) {
+      await pool.promise()
+      .query('INSERT INTO Connection (user_id, manga_id) VALUES (?,?)', [user_id, manga_id])
+      .then((response) => {
+        if (response[0].affectedRows == 1) {
+          res.redirect('/')
+        } else {
+          res.status(400).redirect('/');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          manga: {
+            error: 'Failed to add manga'
+          }
+        })
+      });
+    } else {
+      req.session.flash = {
+        head: 'Add',
+        msg: 'This manga is already in your reading list'
+      }
+      return res.redirect('/');
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      manga: {
+        error: 'Failed to add manga'
+      }
+    })
+  });
 });
 
 module.exports = router;
