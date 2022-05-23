@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
   req.session.flash = null;
 
   await pool.promise()
-  .query('SELECT * FROM MangaList')
+  .query('SELECT * FROM limmuy_manga')
   .then(([rows, fields]) => {
     if (name == undefined) {
       res.render('index.njk', { 
@@ -53,11 +53,11 @@ router.get('/:id/add', async (req, res, next) => {
     return res.redirect('/');
   }
   await pool.promise()
-  .query('SELECT * FROM Connection WHERE user_id = ? AND manga_id = ?', [user_id, manga_id])
+  .query('SELECT * FROM limmuy_connection WHERE user_id = ? AND manga_id = ?', [user_id, manga_id])
   .then(async (response) => {
     if (response[0][0] == undefined) {
       await pool.promise()
-      .query('INSERT INTO Connection (user_id, manga_id) VALUES (?,?)', [user_id, manga_id])
+      .query('INSERT INTO limmuy_connection (user_id, manga_id) VALUES (?,?)', [user_id, manga_id])
       .then((response) => {
         if (response[0].affectedRows == 1) {
           return;

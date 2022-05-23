@@ -30,12 +30,12 @@ router.post('/signup', async (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   await pool.promise()
-    .query('SELECT name FROM users WHERE name = ? ', [name])
+    .query('SELECT name FROM limmuy_users WHERE username = ? ', [name])
     .then((response) => {
       if (response[0][0] == undefined) {
         bcrypt.hash(password, 8, async function (err, hash) {
           await pool.promise()
-            .query('INSERT INTO users (name, password) VALUES (?, ?)', [name, hash])
+            .query('INSERT INTO limmuy_users (username, password) VALUES (?, ?)', [name, hash])
             .then((response) => {
               if (response[0].affectedRows === 1) {
                 res.redirect('/users/login');
@@ -74,7 +74,7 @@ router.post('/login', async (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   await pool.promise()
-  .query('SELECT * FROM users WHERE name = ?', [name])
+  .query('SELECT * FROM limmuy_users WHERE username = ?', [name])
   .then(([rows, fields]) => {
     if (rows.length === 0) {
       req.session.flash = {
