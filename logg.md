@@ -50,3 +50,8 @@ Idag så tänker jag skapa en lista av manga på huvud sidan som man sedan kan l
 Lyckades skapa en lista av manga på hemsidan men han inte mer.
 
 Ska fortsätta och byta ut sql statements som jag använder och ändra hur mangalist tabellen ser ut.
+
+### 2022-05-23
+Jag arbetade mer på hemsidan och skapade en tabell kallad "Connection" men jag har inte bytt ut sql statements än.
+
+Idag så ska jag se till att detta projekt fungerar på Heroku.
