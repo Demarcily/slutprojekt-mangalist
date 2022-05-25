@@ -20,7 +20,7 @@
           </div>
           <div class="iblock">
             <button class="collapsible">Edit</button>
-            <form action="/mangalist/{{manga.id}}/edit" method="post" class="mtop content">
+            <form action="/mangalist/{{manga.manga_id}}/edit" method="post" class="mtop content">
               <div class="input-group input-group-sm">
                 <input class="form-control" 
                   type="text" 
@@ -43,7 +43,7 @@
             </form>
           </div>
           <div class="f-right">
-            <a href="/mangalist/{{manga.id}}/delete" class="btn btn-danger btn-sm">Remove</a>
+            <a href="/mangalist/{{manga.manga_id}}/delete" class="btn btn-danger btn-sm">Remove</a>
           </div>
         </div>
       </div>

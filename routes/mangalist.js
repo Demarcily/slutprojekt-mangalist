@@ -72,9 +72,10 @@ router.get('/search', async (req, res, next) => {
 });
 
 router.get('/:id/delete', async (req, res, next) => {
-  const id = req.params.id;
+  const manga_id = req.params.id;
+  const user_id = req.session.user_id;
   await pool.promise()
-  .query('DELETE FROM limmuy_manga WHERE id = ?', [id])
+  .query('DELETE FROM limmuy_connection WHERE manga_id = ? AND user_id = ?', [manga_id, user_id])
   .then((response) => {
     if (response[0].affectedRows == 1) {
       res.redirect('/mangalist');
@@ -102,11 +103,12 @@ router.get('/logout', async (req, res, next) => {
 });
 
 router.post('/:id/edit', async (req, res, next) => {
-  const id = req.params.id;
+  const manga_id = req.params.id;
+  const user_id = req.session.user_id;
   const chapter = req.body.chapter;
   const status = req.body.status;
   await pool.promise()
-  .query('UPDATE limmuy_manga SET chapter = ?, status = ? WHERE id = ?', [chapter, status, id]) //Change to limmuy_connection
+  .query('UPDATE limmuy_connection SET chapter = ?, status = ? WHERE manga_id = ? AND user_id = ?', [chapter, status, manga_id, user_id]) //Change to limmuy_connection
   .then((response) => {
     if (response[0].affectedRows == 1) {
       res.redirect('/mangalist')
