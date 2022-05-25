@@ -55,3 +55,8 @@ Ska fortsätta och byta ut sql statements som jag använder och ändra hur manga
 Jag arbetade mer på hemsidan och skapade en tabell kallad "Connection" men jag har inte bytt ut sql statements än.
 
 Idag så ska jag se till att detta projekt fungerar på Heroku.
+
+### 2022-05-25
+Jag ändrade databas så att den inte längre är lokal och kan användas på andra sidor men jag har inte fått heroku att fungera helt.
+
+Tänker fortsätta med att ansluta till heroku och se till att sidan fungerar.
