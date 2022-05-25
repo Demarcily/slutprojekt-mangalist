@@ -3,8 +3,9 @@ const router = express.Router();
 const pool = require('../database');
 
 router.get('/', async (req, res, next) => {
-  const name = req.session.username;
-  if (name == undefined) {
+  const username = req.session.username;
+  const user_id = req.session.user_id;
+  if (username == undefined) {
     req.session.flash = {
       head: 'Login',
       msg: `You're not logged in`
@@ -13,7 +14,7 @@ router.get('/', async (req, res, next) => {
   }
 
   await pool.promise()
-  .query('SELECT * FROM limmuy_manga')
+  .query('SELECT limmuy_manga.title, limmuy_manga.id, limmuy_connection.* FROM limmuy_connection JOIN limmuy_manga ON limmuy_manga.id=limmuy_connection.manga_id WHERE limmuy_connection.user_id = ?', [user_id])
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
@@ -21,7 +22,7 @@ router.get('/', async (req, res, next) => {
       layout: 'layout.njk',
       loggedin: {
         logout: 'Logout',
-        username: name
+        username: username
       }
     });
   })
@@ -38,8 +39,8 @@ router.get('/', async (req, res, next) => {
 router.get('/search', async (req, res, next) => {
   const title = req.query.searchtitle;
   const search = `%${title}%`
-  const name = req.session.username;
-  if (name == undefined) {
+  const username = req.session.username;
+  if (username == undefined) {
     req.session.flash = {
       head: 'Login',
       msg: `You're not logged in`
@@ -56,7 +57,7 @@ router.get('/search', async (req, res, next) => {
       layout: 'layout.njk',
       loggedin: {
         logout: 'Logout',
-        username: name
+        username: username
       }
     });
   })
