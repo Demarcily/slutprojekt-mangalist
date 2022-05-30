@@ -40,6 +40,7 @@ router.get('/search', async (req, res, next) => {
   const title = req.query.searchtitle;
   const search = `%${title}%`
   const username = req.session.username;
+  const user_id = req.session.user_id;
   if (username == undefined) {
     req.session.flash = {
       head: 'Login',
@@ -49,7 +50,8 @@ router.get('/search', async (req, res, next) => {
   }
 
   await pool.promise()
-  .query('SELECT * FROM limmuy_manga WHERE title LIKE ?', [search]) //Results based on user logged in
+
+  .query('SELECT limmuy_manga.title, limmuy_manga.id, limmuy_connection.* FROM limmuy_connection JOIN limmuy_manga ON limmuy_manga.id=limmuy_connection.manga_id WHERE limmuy_connection.user_id = ? AND title LIKE ?', [user_id, search]) //Results based on user logged in
   .then(([rows, fields]) => {
     res.render('manga.njk', {
       mangalist: rows,
