@@ -14,10 +14,12 @@ Create and Remove manga, edit the current chapter, get mangalist connected to sp
 ## Database
 users - Store all logins.
 
-manga - Store manga entries, somehow connected to their respective user, either on this database or through the other one.
+manga - Store manga entries, somehow connected to their respective user, either on this tabell or through the other one.
+
+(Finns nu en tredje tabell som binder manga id till användare, d.v.s varje användare har sin egen lista)
 
 ## Frontend
-Home page - no real content.
+Home page - no real content. (Har nu en lista av manga som man kan lägga till sin användare)
 
 Sign up and log in - a form to send data to users.
 
