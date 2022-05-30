@@ -21,7 +21,7 @@ router.get('/signup', async (req, res, next) => {
 
   res.render('signup.njk', { 
     layout: 'layout.njk', 
-    title: 'Signup', 
+    Htitle: 'Signup', 
     flash: flash
   });
 });
@@ -66,7 +66,7 @@ router.get('/login', async (req, res, next) => {
 
   res.render('login.njk', { 
     layout: 'layout.njk', 
-    title: 'Login',
+    Htitle: 'Login',
     flash: flash });
 });
 
