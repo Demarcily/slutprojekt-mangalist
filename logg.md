@@ -60,3 +60,13 @@ Idag så ska jag se till att detta projekt fungerar på Heroku.
 Jag ändrade databas så att den inte längre är lokal och kan användas på andra sidor men jag har inte fått heroku att fungera helt.
 
 Tänker fortsätta med att ansluta till heroku och se till att sidan fungerar.
+
+### 2022-05-30
+Sidan är ansluten till heroku och allt fungerar.
+
+Jag ska börja skriva PM.
+
+### 2022-06-01
+Jag har blivit klar med hälften av PM:et.
+
+Ska bearbeta med feedback och sen fortsätta med PM.

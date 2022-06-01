@@ -1,6 +1,7 @@
 {% extends layout %}
 {% block content %}
 <form action="/users/signup" method="post" class="mt-3 mb-3 p-3 position-absolute top-50 start-50 translate-middle bg-light border border-dark rounded">
+  <legend>Sign up</legend>
   <div class="mb-4">
     <label for="usernameSignup" class="form-label">Username</label>
     <input class="form-control" 
@@ -18,7 +19,8 @@
       type="password" 
       name="password" 
       id="passwordSignup" 
-      value="{{ password }}" 
+      value="{{ password }}"
+      placeholder=">8 characters long" 
       required 
       aria-label="Sizing example input" 
       aria-describedby="inputGroup-sizing-sm">
