@@ -29,6 +29,13 @@ router.get('/signup', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  if (password.length < 8) {
+    req.session.flash = {
+      head: 'Sign up',
+      msg: 'Password is too short'
+    }
+    return res.redirect('/users/signup');
+  }
   await pool.promise()
     .query('SELECT username FROM limmuy_users WHERE username = ? ', [username])
     .then((response) => {
@@ -53,9 +60,13 @@ router.post('/signup', async (req, res, next) => {
           head: 'Sign up',
           msg: 'Username is already in use'
         }
-        res.redirect('/users/signup')
+        res.redirect('/users/signup');
       }
     })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/users/signup');
+    });
 });
 
 
